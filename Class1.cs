@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -117,10 +117,36 @@ namespace ConsoleApp2
     }
     internal class Manager:Human
     {
+        private string position;
 
+        public string Position { get=>position;
+            set {
+                if (value == null) throw new Exception();
+            }
+        }
+
+        void calculateSalaries();
     }
     internal class Client : Human
     {
+        private string home_address;
+        private string work_address;
+
+        public string Home_Address { get=>home_address; set
+            {
+                if (value == null) throw new Exception();
+                home_address=value;
+            }
+        }
+
+        public string Work_Address { get=>work_address; set 
+            {
+                if (value == null) throw new Exception();
+                work_address=value;
+            }
+        }
+
+
 
     }
 
