@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace Bank_Project
 {
     internal class Bank
     {
@@ -14,7 +15,7 @@ namespace ConsoleApp2
         public CEO Ceo { get; set; }
         public Worker[] workers;
         public Manager[] managers;
-        public Client[] clients;
+        public Credit[] credits;
 
         public Bank(string name, double budget, double profit)
         {
@@ -23,23 +24,30 @@ namespace ConsoleApp2
             Profit = profit;
         }
 
-        public string Name { get=>name; set {
+        public string Name
+        {
+            get => name; set
+            {
                 if (value == null) throw new InvalidDataException();
-                name= value;
+                name = value;
             }
         }
-        public double Budget { get => budget; set
+        public double Budget
+        {
+            get => budget; set
             {
-                if(value<0) throw new InvalidDataException();
-                budget= value;
+                if (value < 0) throw new InvalidDataException();
+                budget = value;
             }
         }
 
-        public double Profit { get => profit; set
+        public double Profit
+        {
+            get => profit; set
             {
-                if(value<0)throw new InvalidDataException();
-                profit= value;
-            } 
+                if (value < 0) throw new InvalidDataException();
+                profit = value;
+            }
         }
 
         public void AddWorker(Worker worker)
@@ -53,8 +61,8 @@ namespace ConsoleApp2
                 {
                     Array.Copy(workers, i, newList, 1, workers.Length);
                 }
-                    newList[workers.Length] = worker;
-                    workers = newList;
+                newList[workers.Length] = worker;
+                workers = newList;
             }
 
             else
@@ -85,33 +93,53 @@ namespace ConsoleApp2
             }
         }
 
-        public void AddClient(Client client)
+        public void AddCredit(Credit client)
         {
-            Client[] newList;
-            if (clients != null)
+            Credit[] newList;
+            if (credits != null)
             {
-                newList = new Client[clients.Length + 1];
+                newList = new Credit[credits.Length + 1];
                 int i = 0;
-                for (; i < clients.Length; i++)
+                for (; i < credits.Length; i++)
                 {
-                    Array.Copy(clients, i, newList, 1, clients.Length);
+                    Array.Copy(credits, i, newList, 1, credits.Length);
                 }
-                newList[clients.Length] = client;
-                clients = newList;
+                newList[credits.Length] = client;
+                credits = newList;
             }
 
             else
             {
-                clients = new Client[1];
-                clients[0] = client;
+                credits = new Credit[1];
+                credits[0] = client;
             }
         }
 
 
 
-        public void calculate_profit() {  Console.WriteLine($"This years profit: {profit}");}
-        public void showClientCredit(string name,string surname) { }
-        public void PayCredit(Client client,int money_amount) { }
+        public void calculate_profit() { Console.WriteLine($"This years profit: {profit}"); }
+        public void showClientCredit(Client client)
+        {
+            foreach (var credit in credits)
+            {
+                if (credit.CLient == client)
+                {
+                    credit.Show();
+                    return;
+                }
+            }
+        }
+        public void PayCredit(Client client, int money_amount)
+        {
+            foreach (var credit in credits)
+            {
+                if (credit.CLient == client)
+                {
+                    credit.Amount -= money_amount;
+                    credit.Show();
+                }
+            }
+        }
 
     }
 }

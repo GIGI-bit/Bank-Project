@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Bank_Project;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace Bank_Project
 {
     internal class Human
     {
@@ -15,7 +16,7 @@ namespace ConsoleApp2
         private float salary;
 
         public Human() { }
-        public Human( string name, string surname, int age, float salary)
+        public Human(string name, string surname, int age, float salary)
         {
             Name = name;
             Surname = surname;
@@ -88,13 +89,13 @@ namespace ConsoleApp2
             }
         }
 
-        public CEO(){}
-        public CEO(string name,string surname,int age, float salary):base(name,surname,age,salary){ }
+        public CEO() { }
+        public CEO(string name, string surname, int age, float salary) : base(name, surname, age, salary) { }
         public void decreasePercentage()
         {
 
         }
-        public void makeMeeting(Manager[] managers, Worker[]workers)
+        public void makeMeeting(Manager[] managers, Worker[] workers)
         {
             Console.WriteLine("MEETING");
             Console.WriteLine($"Organizer: {this.Name} {this.Surname}");
@@ -115,7 +116,7 @@ namespace ConsoleApp2
 
         public void organize()
         {
-           
+
         }
 
         public override void Show()
@@ -136,7 +137,7 @@ namespace ConsoleApp2
         {
             startDate = DateTime.Now;
         }
-        public Worker(string name,string surname,int age,float salary) : base(name, surname, age, salary) { }
+        public Worker(string name, string surname, int age, float salary) : base(name, surname, age, salary) { }
 
         public DateTime EndDate { get => endTime; }
         public DateTime StartDate { get => startDate; }
@@ -155,7 +156,7 @@ namespace ConsoleApp2
             base.Show();
             Console.WriteLine($"Position: {position}");
             Console.WriteLine($"Start Date: {StartDate.ToString()}");
-            if(EndDate!=null) Console.WriteLine($"End Date: {EndDate.ToString()}");
+            if (EndDate != null) Console.WriteLine($"End Date: {EndDate.ToString()}");
         }
 
     }
@@ -164,9 +165,9 @@ namespace ConsoleApp2
         private string position;
         public Manager()
         {
-            
+
         }
-        public Manager(string name,string surname,int age,float salary):base(name, surname, age, salary) { }
+        public Manager(string name, string surname, int age, float salary) : base(name, surname, age, salary) { }
         public string Position
         {
             get => position;
@@ -176,13 +177,13 @@ namespace ConsoleApp2
             }
         }
 
-        public double calculateSalaries(Worker worker) {
+        public double calculateSalaries(Worker worker)
+        {
             var perDay = worker.Salary / 30;
-            var perHour = perDay / 24; 
             var workTime = DateTime.Now - worker.StartDate;
-            
 
-            var totalPay=workTime.TotalDays*perDay+workTime.Hours*perHour;
+
+            var totalPay = workTime.TotalDays * perDay;
             return totalPay;
         }
 
@@ -201,7 +202,7 @@ namespace ConsoleApp2
         private string home_address;
         private string work_address;
 
-        public Client(string name, string surname, int age, float salary):base(name,surname, age, salary) { }
+        public Client(string name, string surname, int age, float salary) : base(name, surname, age, salary) { }
 
         public string Home_Address
         {

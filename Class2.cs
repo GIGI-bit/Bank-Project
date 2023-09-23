@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp2
+namespace Bank_Project
 {
     internal class Operation
     {
@@ -14,17 +14,19 @@ namespace ConsoleApp2
 
         public Operation(string operation_name, DateTime dateTime, string operation_Name)
         {
-           id = new Guid();
+            id = new Guid();
             this.operation_name = operation_name;
             dateTime = DateTime.Now;
             Operation_Name = operation_Name;
         }
 
-        public string Operation_Name { get => operation_name; set
+        public string Operation_Name
+        {
+            get => operation_name; set
             {
                 if (value == null) throw new Exception();
                 operation_name = value;
-            } 
+            }
         }
 
         public DateTime Date_Time
@@ -41,7 +43,7 @@ namespace ConsoleApp2
         public Operation()
         {
             id = new Guid();
-            dateTime= DateTime.Now;
+            dateTime = DateTime.Now;
         }
 
 
@@ -63,28 +65,39 @@ namespace ConsoleApp2
         }
 
         public Guid Id { get => id; }
-        public Client CLient{ get=>client; set { 
-            if (client == null) throw new Exception();
-            client = value;
-
-            } 
-        }
-
-        public float Amount { get=>amount; set {
-            if(value==null)throw new Exception();
-            amount = value;
-            } 
-        }
-
-        public float Percent { get=>percent; set
+        public Client CLient
+        {
+            get => client; set
             {
-                if (value == null)  throw new Exception();
+                if (client == null) throw new Exception();
+                client = value;
+
+            }
+        }
+
+        public float Amount
+        {
+            get => amount; set
+            {
+                if (value == null) throw new Exception();
+                amount = value;
+            }
+        }
+
+        public float Percent
+        {
+            get => percent; set
+            {
+                if (value == null) throw new Exception();
                 percent = value;
             }
         }
 
-        public int Month { get=>month; set {
-                if (value == null) throw new Exception();    
+        public int Month
+        {
+            get => month; set
+            {
+                if (value == null) throw new Exception();
                 month = value;
             }
         }
@@ -96,6 +109,14 @@ namespace ConsoleApp2
         public void Payment()
         {
 
+        }
+        public void Show()
+        {
+            Console.WriteLine($"Id:{id}");
+            Console.WriteLine($"Amount: {amount}");
+            Console.WriteLine($"Percent: {percent}");
+            Console.WriteLine($"Month: {Month}");
+            client.Show();
         }
 
     }
