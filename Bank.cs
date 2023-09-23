@@ -109,7 +109,7 @@ namespace ConsoleApp2
 
 
 
-        public void calculate_profit() { }
+        public void calculate_profit() {  Console.WriteLine($"This years profit: {profit}");}
         public void showClientCredit(string name,string surname) { }
         public void PayCredit(Client client,int money_amount) { }
 
