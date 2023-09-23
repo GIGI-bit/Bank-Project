@@ -125,7 +125,17 @@ else if (index == 3)
 
 else if (index == 4)
 {
-    Client client = new Client("Rab", "Normaville",61,1237);
+    Console.Write("Enter Name: ");
+string name = Console.ReadLine();
+Console.Write("Enter Surname: ");
+string surname = Console.ReadLine();
+Console.Write("Enter Age: ");
+int age = Convert.ToInt32(Console.ReadLine());
+Console.Write("Enter Salary: ");
+float salary = Convert.ToSingle(Console.ReadLine());
+
+
+Client client = new Client(name,surname,age,salary);
 }
 
 
